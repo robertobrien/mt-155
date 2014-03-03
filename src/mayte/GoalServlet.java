@@ -32,7 +32,11 @@ public class GoalServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		log("Session.id = "+session.getId());
+		
+		String goal = (String)session.getAttribute("user");
 
+		Cookie cookie = new Cookie("user", goal);
+		response.addCookie(cookie);
 		response.sendRedirect("goal.html");
 	}
 
