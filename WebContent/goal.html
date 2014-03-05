@@ -8,8 +8,8 @@
 
 <script type="text/javascript">
 function setupForm() {
-	document.profileForm.user.value = "start";
-	status("start");
+	document.getElementById("userGoal").value = cookie.get("user");
+	status("user="+cookie.get("user"));
 }
 function status(msg) {
 	document.getElementById("status").innerHTML=msg;
@@ -17,7 +17,7 @@ function status(msg) {
 </script>
 
 </head>
-<body onload="setupForm">
+<body onload="setupForm()">
 
 <p>
 Cookies::<br/>
@@ -32,7 +32,6 @@ document.write("cookie.enabled="+cookie.enabled());
 document.write("<br/>");
 
 document.write("user="+cookie.get("user"));
-status("user="+cookie.get("user"));
 </script>
 <p>
 
@@ -43,7 +42,7 @@ status("user="+cookie.get("user"));
 My Mission is: <script>document.write(cookie.get("user"));</script>
 
 <br/><br/>
-<input type="text" name="user" value="" size=80>
+<input id="userGoal" type="text" name="user" value="" size=80>
 <br/><br/>
 
 <input type="submit" value="Submit">
@@ -54,7 +53,10 @@ My Mission is: <script>document.write(cookie.get("user"));</script>
 </form>
 <br/>
 <input type="button" onclick="status('start')" value="Status">
+<input type="button" onclick="status('')" value="Status Clear">
 <br/>
-<strong name="status">status</strong>
+<p>
+<strong id="status">status</strong>
+</p>
 </body>
 </html>
